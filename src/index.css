@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@theme {
+  --color-theater-gold: #d4a843;
+  --color-theater-dark: #1a1a2e;
+  --color-theater-purple: #6b4c9a;
+}
