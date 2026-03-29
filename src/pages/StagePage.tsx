@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { Upload, Trash2, Plus, X } from 'lucide-react';
+import { Upload, Trash2 } from 'lucide-react';
 import { useAppStore } from '../store/useAppStore';
 import { useActiveShow, useActiveTrack, useShowScenes, useShowTracks, useShowGroundPlans, useGroundPlanMarks } from '../store/selectors';
 

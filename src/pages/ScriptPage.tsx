@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { useActiveShow, useActiveTrack, useShowScriptPages, useShowTracks, useScriptAnnotation } from '../store/selectors';
-import { Upload, ChevronLeft, ChevronRight, MessageSquare, ChevronDown } from 'lucide-react';
+import { Upload, ChevronLeft, ChevronRight, MessageSquare } from 'lucide-react';
 
 export default function ScriptPage() {
   const activeShow = useActiveShow();
