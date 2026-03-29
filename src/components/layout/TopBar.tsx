@@ -20,7 +20,7 @@ export default function TopBar() {
     <header className="bg-theater-dark text-white">
       {/* Top row: logo, show selector, mode toggle */}
       <div className="px-4 py-3 flex items-center gap-3">
-        <h1 className="text-lg font-bold tracking-wide mr-auto">SwingTrack</h1>
+        <h1 className="text-lg font-bold tracking-wide mr-auto">BackStagePal</h1>
 
         {shows.length > 0 && (
           <select
