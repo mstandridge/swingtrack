@@ -14,7 +14,7 @@ export default function QuickRefPage() {
   const multipleSelected = allSelected || activeTrackIds.length > 1;
 
   if (!activeShow) {
-    return <div className="p-6 text-center text-gray-400">Select a show to get started</div>;
+    return <div className="p-6 text-center text-gray-400 dark:text-gray-500">Select a show to get started</div>;
   }
 
   return (
@@ -23,7 +23,7 @@ export default function QuickRefPage() {
         {!multipleSelected && activeTrack && (
           <span className="w-4 h-4 rounded-full" style={{ backgroundColor: activeTrack.color }} />
         )}
-        <h2 className="text-xl font-bold text-theater-dark">
+        <h2 className="text-xl font-bold text-theater-dark dark:text-gray-100">
           {!multipleSelected && activeTrack ? activeTrack.characterName : 'Quick Reference'}
         </h2>
         <span className="ml-auto text-xs bg-yellow-400 text-black px-2 py-1 rounded font-medium">
@@ -32,7 +32,7 @@ export default function QuickRefPage() {
       </div>
 
       {scenes.length === 0 ? (
-        <p className="text-gray-400 text-center">No scenes set up yet.</p>
+        <p className="text-gray-400 dark:text-gray-500 text-center">No scenes set up yet.</p>
       ) : (
         <div className="space-y-4">
           {scenes.map((scene) => {
@@ -46,10 +46,10 @@ export default function QuickRefPage() {
             const borderColor = !multipleSelected && activeTrack ? activeTrack.color : '#6b4c9a';
 
             return (
-              <div key={scene.id} className="bg-white rounded-lg border-l-4 p-4"
+              <div key={scene.id} className="bg-white dark:bg-gray-800 rounded-lg border-l-4 p-4"
                 style={{ borderLeftColor: borderColor }}>
-                <h3 className="font-bold text-sm mb-2">
-                  <span className="text-gray-400 font-mono mr-1">A{scene.actNumber}S{scene.sceneNumber}</span>
+                <h3 className="font-bold text-sm mb-2 dark:text-gray-100">
+                  <span className="text-gray-400 dark:text-gray-500 font-mono mr-1">A{scene.actNumber}S{scene.sceneNumber}</span>
                   {scene.name}
                 </h3>
 
@@ -65,7 +65,7 @@ export default function QuickRefPage() {
                           </span>
                         </div>
                       )}
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm dark:text-gray-300">
                         {note.entranceFrom && (
                           <p><span className="font-bold text-green-600">ENTER:</span> {note.entranceFrom}</p>
                         )}
@@ -73,17 +73,17 @@ export default function QuickRefPage() {
                           <p><span className="font-bold text-red-500">EXIT:</span> {note.exitTo}</p>
                         )}
                         {note.startingPosition && (
-                          <p><span className="font-bold text-gray-500">START:</span> {note.startingPosition}</p>
+                          <p><span className="font-bold text-gray-500 dark:text-gray-400">START:</span> {note.startingPosition}</p>
                         )}
                         {note.endingPosition && (
-                          <p><span className="font-bold text-gray-500">END:</span> {note.endingPosition}</p>
+                          <p><span className="font-bold text-gray-500 dark:text-gray-400">END:</span> {note.endingPosition}</p>
                         )}
                       </div>
                       {note.props && (
-                        <p className="text-sm mt-1"><span className="font-bold text-orange-500">PROPS:</span> {note.props}</p>
+                        <p className="text-sm mt-1 dark:text-gray-300"><span className="font-bold text-orange-500">PROPS:</span> {note.props}</p>
                       )}
                       {note.notes && (
-                        <p className="text-xs text-gray-500 mt-1">{note.notes}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{note.notes}</p>
                       )}
                     </div>
                   );
@@ -92,7 +92,7 @@ export default function QuickRefPage() {
                 {sceneCostumes.map((cc) => {
                   const ccTrack = tracks.find((t) => t.id === cc.trackId);
                   return (
-                    <div key={cc.id} className="mt-2 bg-gray-50 rounded p-2 text-sm">
+                    <div key={cc.id} className="mt-2 bg-gray-50 dark:bg-gray-700 rounded p-2 text-sm dark:text-gray-300">
                       <div className="flex items-center gap-1.5 mb-1">
                         {multipleSelected && ccTrack && (
                           <span className="w-2 h-2 rounded-full" style={{ backgroundColor: ccTrack.color }} />

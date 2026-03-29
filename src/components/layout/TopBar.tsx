@@ -1,16 +1,18 @@
 import { useAppStore } from '../../store/useAppStore';
 import { useActiveShow, useShowTracks } from '../../store/selectors';
-import { Users } from 'lucide-react';
+import { Users, Moon, Sun } from 'lucide-react';
 
 export default function TopBar() {
   const shows = useAppStore((s) => s.shows);
   const activeShowId = useAppStore((s) => s.activeShowId);
   const activeTrackIds = useAppStore((s) => s.activeTrackIds);
   const mode = useAppStore((s) => s.mode);
+  const darkMode = useAppStore((s) => s.darkMode);
   const setActiveShow = useAppStore((s) => s.setActiveShow);
   const toggleTrack = useAppStore((s) => s.toggleTrack);
   const selectAllTracks = useAppStore((s) => s.selectAllTracks);
   const setMode = useAppStore((s) => s.setMode);
+  const toggleDarkMode = useAppStore((s) => s.toggleDarkMode);
   const activeShow = useActiveShow();
   const tracks = useShowTracks();
 
@@ -18,8 +20,8 @@ export default function TopBar() {
 
   return (
     <header className="bg-theater-dark text-white">
-      {/* Top row: logo, show selector, mode toggle */}
-      <div className="px-4 py-3 flex items-center gap-3">
+      {/* Top row: logo, show selector, mode toggle, dark mode */}
+      <div className="px-4 py-3 flex items-center gap-2">
         <h1 className="text-lg font-bold tracking-wide mr-auto">BackStagePal</h1>
 
         {shows.length > 0 && (
@@ -47,12 +49,19 @@ export default function TopBar() {
             {mode === 'building' ? 'Building' : 'Quick Ref'}
           </button>
         )}
+
+        <button
+          onClick={toggleDarkMode}
+          className="rounded-full p-1.5 bg-white/10 hover:bg-white/20 transition"
+          title={darkMode ? 'Light mode' : 'Dark mode'}
+        >
+          {darkMode ? <Sun size={16} /> : <Moon size={16} />}
+        </button>
       </div>
 
       {/* Track selector row */}
       {activeShow && tracks.length > 0 && (
         <div className="px-4 pb-3 flex items-center gap-2 overflow-x-auto">
-          {/* All tracks button */}
           <button
             onClick={selectAllTracks}
             className={`flex items-center gap-1 rounded-full px-3 py-1.5 text-xs font-medium transition whitespace-nowrap ${
@@ -65,7 +74,6 @@ export default function TopBar() {
             All
           </button>
 
-          {/* Individual track buttons */}
           {tracks.map((t) => {
             const isSelected = allSelected || activeTrackIds.includes(t.id);
             return (

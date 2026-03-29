@@ -16,14 +16,14 @@ export default function TabNav() {
   if (!activeShowId) return null;
 
   return (
-    <nav className="bg-white border-t border-gray-200 flex justify-around py-1 fixed bottom-0 left-0 right-0 z-50">
+    <nav className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex justify-around py-1 fixed bottom-0 left-0 right-0 z-50">
       {tabs.map(({ to, label, icon: Icon }) => (
         <NavLink
           key={to}
           to={to}
           className={({ isActive }) =>
             `flex flex-col items-center gap-0.5 px-3 py-2 text-xs font-medium transition ${
-              isActive ? 'text-theater-purple' : 'text-gray-400'
+              isActive ? 'text-theater-purple dark:text-purple-400' : 'text-gray-400 dark:text-gray-500'
             }`
           }
         >

@@ -18,7 +18,7 @@ export default function CostumesPage() {
   const multipleSelected = allSelected || activeTrackIds.length > 1;
 
   if (!activeShow) {
-    return <div className="p-6 text-center text-gray-400">Select a show to get started</div>;
+    return <div className="p-6 text-center text-gray-400 dark:text-gray-500">Select a show to get started</div>;
   }
 
   const handleAdd = () => {
@@ -43,13 +43,13 @@ export default function CostumesPage() {
         {!multipleSelected && activeTrack && (
           <span className="w-3 h-3 rounded-full" style={{ backgroundColor: activeTrack.color }} />
         )}
-        <h2 className="text-lg font-bold text-theater-dark">
+        <h2 className="text-lg font-bold text-theater-dark dark:text-gray-100">
           Costumes{!multipleSelected && activeTrack ? ` — ${activeTrack.characterName}` : ''}
         </h2>
       </div>
 
       {changes.length === 0 && mode === 'building' && (
-        <p className="text-gray-400 text-sm text-center mb-4">No costume changes yet.</p>
+        <p className="text-gray-400 dark:text-gray-500 text-sm text-center mb-4">No costume changes yet.</p>
       )}
 
       <div className="space-y-3">
@@ -58,7 +58,7 @@ export default function CostumesPage() {
           const changeTrack = tracks.find((t) => t.id === change.trackId);
 
           return (
-            <div key={change.id} className="bg-white rounded-lg border border-gray-200 p-4">
+            <div key={change.id} className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   {multipleSelected && changeTrack && (
@@ -84,11 +84,11 @@ export default function CostumesPage() {
               {mode === 'building' ? (
                 <div className="space-y-2">
                   <div>
-                    <label className="text-xs font-medium text-gray-500">Scene</label>
+                    <label className="text-xs font-medium text-gray-500 dark:text-gray-400">Scene</label>
                     <select
                       value={change.sceneId}
                       onChange={(e) => updateCostumeChange(change.id, { sceneId: e.target.value })}
-                      className="w-full border border-gray-200 rounded px-2 py-1.5 text-sm"
+                      className="w-full border border-gray-200 dark:border-gray-600 rounded px-2 py-1.5 text-sm dark:bg-gray-700 dark:text-gray-100"
                     >
                       {scenes.map((sc) => (
                         <option key={sc.id} value={sc.id}>
@@ -117,8 +117,8 @@ export default function CostumesPage() {
                     onChange={(v) => updateCostumeChange(change.id, { notes: v })} />
                 </div>
               ) : (
-                <div className="text-sm space-y-1">
-                  {scene && <p className="text-xs text-gray-400">A{scene.actNumber}S{scene.sceneNumber} — {scene.name}</p>}
+                <div className="text-sm space-y-1 dark:text-gray-300">
+                  {scene && <p className="text-xs text-gray-400 dark:text-gray-500">A{scene.actNumber}S{scene.sceneNumber} — {scene.name}</p>}
                   {change.location && <p><strong>Where:</strong> {change.location}</p>}
                   {change.timeAvailable && <p><strong>Time:</strong> {change.timeAvailable}</p>}
                   {change.putOn && <p><strong>Put on:</strong> {change.putOn}</p>}
@@ -135,13 +135,13 @@ export default function CostumesPage() {
       {mode === 'building' && !multipleSelected && activeTrack && (
         <button
           onClick={handleAdd}
-          className="mt-4 w-full border-2 border-dashed border-gray-300 rounded-lg py-3 text-sm text-gray-500 hover:border-theater-purple hover:text-theater-purple transition flex items-center justify-center gap-1"
+          className="mt-4 w-full border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg py-3 text-sm text-gray-500 dark:text-gray-400 hover:border-theater-purple hover:text-theater-purple transition flex items-center justify-center gap-1"
         >
           <Plus size={16} /> Add Costume Change
         </button>
       )}
       {mode === 'building' && multipleSelected && (
-        <p className="text-[10px] text-gray-300 text-center mt-3">Select one track to add costume changes</p>
+        <p className="text-[10px] text-gray-300 dark:text-gray-500 text-center mt-3">Select one track to add costume changes</p>
       )}
     </div>
   );
@@ -152,13 +152,13 @@ function PromptInput({ label, value, placeholder, onChange }: {
 }) {
   return (
     <div>
-      <label className="text-xs font-medium text-gray-500">{label}</label>
+      <label className="text-xs font-medium text-gray-500 dark:text-gray-400">{label}</label>
       <input
         type="text"
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-gray-200 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-theater-purple"
+        className="w-full border border-gray-200 dark:border-gray-600 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-theater-purple dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-500"
       />
     </div>
   );

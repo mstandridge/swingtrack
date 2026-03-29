@@ -18,7 +18,7 @@ export default function StagePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   if (!activeShow) {
-    return <div className="p-6 text-center text-gray-400">Select a show to get started</div>;
+    return <div className="p-6 text-center text-gray-400 dark:text-gray-500">Select a show to get started</div>;
   }
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,13 +44,13 @@ export default function StagePage() {
   return (
     <div className="max-w-2xl mx-auto p-4">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-bold text-theater-dark">Stage View</h2>
+        <h2 className="text-lg font-bold text-theater-dark dark:text-gray-100">Stage View</h2>
         {mode === 'building' && (
           <div className="flex items-center gap-2">
             <select
               value={selectedScene}
               onChange={(e) => setSelectedScene(e.target.value)}
-              className="text-xs border rounded px-2 py-1"
+              className="text-xs border dark:border-gray-600 rounded px-2 py-1 dark:bg-gray-700 dark:text-gray-100"
             >
               <option value="">Scene for upload...</option>
               {scenes.map((sc) => (
@@ -75,10 +75,10 @@ export default function StagePage() {
       </div>
 
       {groundPlans.length === 0 ? (
-        <div className="border-2 border-dashed border-gray-300 rounded-lg p-12 text-center">
-          <Upload size={40} className="mx-auto text-gray-300 mb-3" />
-          <p className="text-gray-400 mb-1">No ground plans yet</p>
-          <p className="text-xs text-gray-300">Upload an image of your stage layout or ground plan</p>
+        <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-12 text-center">
+          <Upload size={40} className="mx-auto text-gray-300 dark:text-gray-500 mb-3" />
+          <p className="text-gray-400 dark:text-gray-500 mb-1">No ground plans yet</p>
+          <p className="text-xs text-gray-300 dark:text-gray-500">Upload an image of your stage layout or ground plan</p>
           {mode === 'building' && (
             <button
               onClick={() => fileInputRef.current?.click()}
@@ -100,7 +100,7 @@ export default function StagePage() {
                   className={`text-xs px-3 py-1.5 rounded whitespace-nowrap transition ${
                     activePlan?.id === gp.id
                       ? 'bg-theater-purple text-white'
-                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   {gp.name}
@@ -142,7 +142,7 @@ export default function StagePage() {
                     borderColor: isSelected ? '#000' : 'transparent',
                     opacity: isSelected ? 1 : 0.3,
                   }} />
-                  <span className={isSelected ? 'font-bold' : 'text-gray-300'}>
+                  <span className={isSelected ? 'font-bold dark:text-gray-100' : 'text-gray-300 dark:text-gray-500'}>
                     {t.characterName}
                   </span>
                 </div>

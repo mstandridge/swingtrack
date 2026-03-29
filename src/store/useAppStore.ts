@@ -19,6 +19,8 @@ interface AppState {
   activeShowId: string | null;
   activeTrackIds: string[]; // empty = all tracks
   mode: AppMode;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 
   // Show actions
   createShow: (name: string) => string;
@@ -88,6 +90,8 @@ export const useAppStore = create<AppState>()(
       activeShowId: null,
       activeTrackIds: [],
       mode: 'building',
+      darkMode: false,
+      toggleDarkMode: () => set((s) => ({ darkMode: !s.darkMode })),
 
       createShow: (name) => {
         const id = generateId();

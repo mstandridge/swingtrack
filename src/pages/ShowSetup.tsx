@@ -50,12 +50,12 @@ export default function ShowSetup() {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      <h2 className="text-xl font-bold text-theater-dark mb-1">{activeShow.name}</h2>
-      <p className="text-gray-400 text-sm mb-6">Set up your tracks and scenes</p>
+      <h2 className="text-xl font-bold text-theater-dark dark:text-gray-100 mb-1">{activeShow.name}</h2>
+      <p className="text-gray-400 dark:text-gray-500 text-sm mb-6">Set up your tracks and scenes</p>
 
       {/* Tracks */}
       <section className="mb-8">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
           Character Tracks
         </h3>
         <div className="flex gap-2 mb-3">
@@ -71,7 +71,7 @@ export default function ShowSetup() {
             value={charName}
             onChange={(e) => setCharName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAddTrack()}
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-theater-purple"
+            className="flex-1 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-theater-purple dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-500"
           />
           <button
             onClick={handleAddTrack}
@@ -88,7 +88,7 @@ export default function ShowSetup() {
               key={c}
               onClick={() => setCharColor(c)}
               className={`w-6 h-6 rounded-full border-2 transition ${
-                charColor === c ? 'border-gray-800 scale-110' : 'border-transparent'
+                charColor === c ? 'border-gray-800 dark:border-white scale-110' : 'border-transparent'
               }`}
               style={{ backgroundColor: c }}
             />
@@ -97,9 +97,9 @@ export default function ShowSetup() {
 
         <div className="space-y-1">
           {tracks.map((t) => (
-            <div key={t.id} className="flex items-center gap-2 bg-white rounded-lg border px-3 py-2">
+            <div key={t.id} className="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 px-3 py-2">
               <span className="w-4 h-4 rounded-full" style={{ backgroundColor: t.color }} />
-              <span className="flex-1 text-sm font-medium">{t.characterName}</span>
+              <span className="flex-1 text-sm font-medium dark:text-gray-100">{t.characterName}</span>
               <button onClick={() => deleteTrack(t.id)} className="text-gray-300 hover:text-red-500">
                 <Trash2 size={14} />
               </button>
@@ -110,14 +110,14 @@ export default function ShowSetup() {
 
       {/* Scenes */}
       <section className="mb-8">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+        <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
           Scenes
         </h3>
         <div className="flex gap-2 mb-3">
           <select
             value={actNum}
             onChange={(e) => setActNum(Number(e.target.value))}
-            className="border border-gray-300 rounded-lg px-2 py-2 text-sm"
+            className="border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-2 text-sm dark:bg-gray-700 dark:text-gray-100"
           >
             <option value={1}>Act 1</option>
             <option value={2}>Act 2</option>
@@ -127,7 +127,7 @@ export default function ShowSetup() {
             min={1}
             value={sceneNum}
             onChange={(e) => setSceneNum(Number(e.target.value))}
-            className="w-16 border border-gray-300 rounded-lg px-2 py-2 text-sm text-center"
+            className="w-16 border border-gray-300 dark:border-gray-600 rounded-lg px-2 py-2 text-sm text-center dark:bg-gray-700 dark:text-gray-100"
           />
           <input
             type="text"
@@ -135,7 +135,7 @@ export default function ShowSetup() {
             value={sceneName}
             onChange={(e) => setSceneName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleAddScene()}
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-theater-purple"
+            className="flex-1 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-theater-purple dark:bg-gray-700 dark:text-gray-100 dark:placeholder-gray-500"
           />
           <button
             onClick={handleAddScene}
@@ -147,11 +147,11 @@ export default function ShowSetup() {
         </div>
         <div className="space-y-1">
           {scenes.map((sc) => (
-            <div key={sc.id} className="flex items-center gap-2 bg-white rounded-lg border px-3 py-2">
-              <span className="text-xs text-gray-400 font-mono">
+            <div key={sc.id} className="flex items-center gap-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 px-3 py-2">
+              <span className="text-xs text-gray-400 dark:text-gray-500 font-mono">
                 A{sc.actNumber}S{sc.sceneNumber}
               </span>
-              <span className="flex-1 text-sm">{sc.name}</span>
+              <span className="flex-1 text-sm dark:text-gray-300">{sc.name}</span>
               <button onClick={() => deleteScene(sc.id)} className="text-gray-300 hover:text-red-500">
                 <Trash2 size={14} />
               </button>
