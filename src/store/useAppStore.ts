@@ -107,6 +107,12 @@ export const useAppStore = create<AppState>()(
         scriptPages: s.scriptPages.filter((sp) => sp.showId !== id),
         blockingNotes: s.blockingNotes.filter((bn) => bn.showId !== id),
         costumeChanges: s.costumeChanges.filter((cc) => cc.showId !== id),
+        scriptAnnotations: s.scriptAnnotations.filter((a) => a.showId !== id),
+        groundPlans: s.groundPlans.filter((gp) => gp.showId !== id),
+        stageMarks: s.stageMarks.filter((sm) => {
+          const planIds = s.groundPlans.filter((gp) => gp.showId === id).map((gp) => gp.id);
+          return !planIds.includes(sm.groundPlanId);
+        }),
         activeShowId: s.activeShowId === id ? null : s.activeShowId,
         activeTrackIds: s.activeShowId === id ? [] : s.activeTrackIds,
       })),
@@ -297,6 +303,23 @@ export const useAppStore = create<AppState>()(
         mode: 'building',
       }),
     }),
-    { name: 'swingtrack-storage' }
+    {
+      name: 'swingtrack-storage',
+      version: 2,
+      migrate: (persisted: unknown, version: number) => {
+        const state = persisted as Record<string, unknown>;
+        // v0/v1 → v2: activeTrackId (string|null) → activeTrackIds (string[])
+        if (version < 2) {
+          const oldId = state.activeTrackId as string | null;
+          state.activeTrackIds = oldId ? [oldId] : [];
+          delete state.activeTrackId;
+          // Ensure new arrays exist
+          if (!state.scriptAnnotations) state.scriptAnnotations = [];
+          if (!state.groundPlans) state.groundPlans = [];
+          if (!state.stageMarks) state.stageMarks = [];
+        }
+        return state;
+      },
+    }
   )
 );
